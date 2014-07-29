@@ -14,6 +14,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 DEFAULT_GUESTBOOK_NAME = 'default_guestbook'
 DEFAULT_GUESTBOOK_NAME1 = 'default_guestbook1'
+DEFAULT_GUESTBOOK_NAME2 = 'default_guestbook2'
 
 def guestbook_key(guestbook_name=DEFAULT_GUESTBOOK_NAME):
 	"""Constructs a Datastore key for a Guestbook entity with guestbook_name."""
@@ -441,8 +442,8 @@ class MemberOnePage(webapp2.RequestHandler):
 
 class MemberTwoPage(webapp2.RequestHandler):
 	def get(self):
-		guestbook_name = self.request.get('guestbook_name',
-			DEFAULT_GUESTBOOK_NAME)
+		guestbook_name = self.request.get('guestbook_name2',
+			DEFAULT_GUESTBOOK_NAME2)
 		greetings_query = Greeting.query(
 			ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
 		greetings = greetings_query.fetch(5)
