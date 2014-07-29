@@ -89,7 +89,7 @@
     <div id="left">
       <p style="font-size: 16px; font-family: cursive;"> <em>"We cannot do anything if we will not be used by the One above."</em></p>
       <h3 style="color:#a92f41;">About Me</h3>
-      <p style="text-align: justify; text-indent: 50px;" >Hi! I am a 5th-year student of Bachelor of Science in Computer Engineering studying at Polytechnic University of the Philippines. Being in this course is my first choice. I like dealing with exercises consist of numbers and logic. I am challenged to create a new thing from different parts and materials. I am a happy person and easy to mingle with. I can be your friend and I will be glad to have you as mine. You can have my advice of whatever problem you may encounter. I believe that trust is essential and you can easily ask it from me.
+      <p style="text-align: justify; text-indent: 50px;" >Hi! I am a 5th-year student of Bachelor of Science in Computer Engineering studying at Polytechnic University of the Philippines. Being in this course is my first choice. I like dealing with exercises consist of numbers and logic. I am challenged to create a new thing from different parts and materials. I am a happy person and easy to mingle with. I am a friendly person. 
     </div>
     <div id="contact">
       <ul> 
@@ -121,17 +121,11 @@
           <blockquote style="border-left: 2px solid #a92f41; margin-left: 15px;">{{ greeting.content }}</blockquote>
       {% endfor %}
       </div>
-      <form action="/sign?guestbook_name={{ guestbook_name }}" method="post">
+      <form action="/post-member2?guestbook_name={{ guestbook_name }}" method="post">
         <div><textarea name="content" rows="3" cols="60" style="margin-top:20px; resize:none; text-indent:10px; border: solid 1px #b48375; margin-left: 310px;"></textarea></div>
           <div><input class="button" type="submit" value="Submit Message" style="margin-left:425px; margin-top: -60px; "></div>
       </form>
         <hr>
-        <form style="color:#e5dfc5; margin-left: 370px; height: 100px;">Guestbook name:
-            <input value="{{ guestbook_name }}" name="guestbook_name">
-            <input class="button" type="submit" value="switch" style="color: #e5dfc5; margin-left: -180px; margin-top:20px;">
-        </form>
-
-        <a href="{{ url|safe }}" style="margin-left: 480px; margin-bottom:50px; padding-bottom: 50px;">{{ url_linktext }}</a>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="/stylesheets/js/bootstrap.min.js"></script>
 </body>
