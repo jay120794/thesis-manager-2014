@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 {% autoescape true %}
-<html>
-
-<head>
-	
-	<title>My Webpage</title>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
-</head>
-
-
+<html> 
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/css/bootstrap.css">
+    <title>My Webpage</title>
+  </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,7 +23,9 @@
         <div class="collapse navbar-collapse">
           <ul class = "nav navbar-nav">
             <li class = "dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">  
+
+
                     Students <span class="glyphicon glyphicon-chevron-down"></span>
                 </a>
               <ul class = "dropdown-menu" role = "menu">
@@ -79,68 +77,63 @@
               </ul>
             </li>
           </ul>
+          <a href="{{ url|safe }}" class="navbar-link navbar-right navbar-text" style="color: #5586E6; margin-right: 130px;">{{ url_linktext }}</a>
         </div>
       </div>
     </div>
-    <img src="http://goo.gl/JlK2XF" height="210" width="210"/>
-    
-<p>Mario Larines Decierra</p>
-    
-<p>We cannot do anything if we will not be used by the One above.</p>
-    
-<p>About Me</p>
-    <p>Hi! I am a 5th-year student of Bachelor of Science in Computer Engineering studying at Polytechnic University of the Philippines. Being in this course is my first choice. I like dealing with exercises consist of numbers and logic. I am challenged to create a new thing from different parts and materials. I am a happy person and easy to mingle with. I can be your friend and I will be glad to have you as mine. You can have my advice of whatever problem you may encounter. I believe that trust is essential and you can easily ask it from me.
-    
-<ul> Contact Me
-        
-	<li>Mdecierra@gmail.com</li>
-        
-	<li>+639091256680</li>
-    
-</ul>
-<table>
-    
-<thead> Social Links </thead>
-    
-<tbody>
-        
-<tr>
-            
-	<td><a href="https://facebook.com/oiram.decierra"> <img src="http://trackpros.files.wordpress.com/2012/03/1-facebook-logo-black-crop-e1328795344243.jpg?w=590" height="50" width="50"/> </a> </td>
-            
-	<td><a href="https://twitter.com/iamoiram"> <img src="http://t0.gstatic.com/images?q=tbn:ANd9GcRDlFpUh-P9ekiKEYhHL0J9jI_ImT8oCOSsf07Iu6yKnw-pEtR4" height="50" width="50"/> </a> 
-</td>
-             
-	<td><a href="https://www.codecademy.com/teeghock"> <img src="http://media-cache-ec0.pinimg.com/originals/a3/48/75/a348750c5646dc897c4100accee53998.jpg" height="50" width="50"/> </a> 
-</td>
-             
-	<td><a href="https://github.com/teeghock"> <img src="http://www.matthewfarmer.net/assets/github_logo-3a39ffd6fcf6f63f799b59e5aad34680.png" height="70" width="70"/> </a> 
-</td>
-        
-</tr>
-    
-</tbody>
+  <div style="color:#e5dfc5;">
+    <div id="right">
+      <img src="http://i1310.photobucket.com/albums/s660/Oiram_Decierra/1922772_784419301569851_973392729_n_zpsc99de954.jpg" style="border-radius: 10px; border: solid #778899 2px;" height="210" width="210"/>
+      <p style="color:#a92f41;">Mario Larines Decierra</p>
+    </div>
+    <div id="left">
+      <p style="font-size: 16px; font-family: cursive;"> <em>"We cannot do anything if we will not be used by the One above."</em></p>
+      <h3 style="color:#a92f41;">About Me</h3>
+      <p style="text-align: justify; text-indent: 50px;" >Hi! I am a 5th-year student of Bachelor of Science in Computer Engineering studying at Polytechnic University of the Philippines. Being in this course is my first choice. I like dealing with exercises consist of numbers and logic. I am challenged to create a new thing from different parts and materials. I am a happy person and easy to mingle with. I can be your friend and I will be glad to have you as mine. You can have my advice of whatever problem you may encounter. I believe that trust is essential and you can easily ask it from me.
+    </div>
+    <div id="contact">
+      <ul> 
+        <h3 style="color:#a92f41;"> Contact Me </h3>
+              <li>MDecierra@gmail.com</li>
+              <li>+639091256680</li>
+        </ul>
+      </div>
+      <div id="link">
+      <table stype="padding:10px;">
+          <th colspan="4" style="text-align:left" width="150"><h3 style="color:#a92f41;">My Social Links</h3></th>
+            <tr style="padding: 20px;">
+                <td><a style="img-align:right; padding:10px;" href="https://facebook.com/oiram.decierra"> <img src="http://trackpros.files.wordpress.com/2012/03/1-facebook-logo-black-crop-e1328795344243.jpg?w=590" height="50" width="50" style="border-radius:5px;"/> </a> </td>
+                <td><a style="padding:10px;" href="https://twitter.com/iamoiram"> <img src="http://t0.gstatic.com/images?q=tbn:ANd9GcRDlFpUh-P9ekiKEYhHL0J9jI_ImT8oCOSsf07Iu6yKnw-pEtR4" height="50" width="50" style="border-radius:5px;"/> </a> </td>
+                <td><a style="padding:10px;" href="https://www.codecademy.com/teeghock"> <img src="http://media-cache-ec0.pinimg.com/originals/a3/48/75/a348750c5646dc897c4100accee53998.jpg" height="50" width="50" style="border-radius:5px;"/> </a> </td>
+                <td><a style="padding:10px;" href="https://github.com/teeghock"> <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQldtIJ4tGQRWCzvxo7bfH4vRK4FCS2AaLnsZZGSdzwJL9QhEAM" height="50" width="50" style="border-radius:5px;"/> </a> </td>
+            </tr>
+      </table> 
+    </div>
+  </div>
   
-</table> 
+    <div style="background-color: rgba(37,33,32,0.3); color: #e5dfc5; overflow:auto; height: 350px; width:600px; margin-top:75px; margin-left: 200px; border: solid 1px black; border-radius:7px;">
+    {% for greeting in greetings %}
+          {% if greeting.author %}
+            <p style="font-family: arial; padding-top: 15px; padding-left: 15px;"><strong>{{ greeting.author.nickname() }} </strong> wrote: </p>
+            {% else %}
+            <p style="font-family: arial; padding-left: 15px;"> An unknown person wrote: </p>
+            {% endif %} 
+          <blockquote style="border-left: 2px solid #a92f41; margin-left: 15px;">{{ greeting.content }}</blockquote>
+      {% endfor %}
+      </div>
+      <form action="/sign?guestbook_name={{ guestbook_name }}" method="post">
+        <div><textarea name="content" rows="3" cols="60" style="margin-top:20px; resize:none; text-indent:10px; border: solid 1px #b48375; margin-left: 310px;"></textarea></div>
+          <div><input class="button" type="submit" value="Submit Message" style="margin-left:425px; margin-top: -60px; "></div>
+      </form>
+        <hr>
+        <form style="color:#e5dfc5; margin-left: 370px; height: 100px;">Guestbook name:
+            <input value="{{ guestbook_name }}" name="guestbook_name">
+            <input class="button" type="submit" value="switch" style="color: #e5dfc5; margin-left: -180px; margin-top:20px;">
+        </form>
 
-{% for greeting in greetings %}
-      {% if greeting.author %}
-        <b>{{ greeting.author.nickname() }}</b> wrote:
-      {% else %}
-       An unknown person wrote:
-      {% endif %}
-      <blockquote>{{ greeting.content }}</blockquote>
-    {% endfor %}
-
-    <form action="/post-member2?guestbook_name={{ guestbook_name }}" method="post">
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-      <div><input type="submit" value="Submit Message"></div>
-    </form>
-
-    <hr>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/stylesheets/js/bootstrap.min.js"></script>
+        <a href="{{ url|safe }}" style="margin-left: 480px; margin-bottom:50px; padding-bottom: 50px;">{{ url_linktext }}</a>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="/stylesheets/js/bootstrap.min.js"></script>
 </body>
-  
 </html>
 {% endautoescape %}

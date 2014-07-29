@@ -16,13 +16,13 @@ DEFAULT_GUESTBOOK_NAME = 'default_guestbook'
 DEFAULT_GUESTBOOK_NAME1 = 'default_guestbook1'
 
 def guestbook_key(guestbook_name=DEFAULT_GUESTBOOK_NAME):
-    """Constructs a Datastore key for a Guestbook entity with guestbook_name."""
-    return ndb.Key('Guestbook', guestbook_name)
+	"""Constructs a Datastore key for a Guestbook entity with guestbook_name."""
+	return ndb.Key('Guestbook', guestbook_name)
 
 class Greeting(ndb.Model):
-    author = ndb.UserProperty()
-    content = ndb.StringProperty(indexed=False)
-    date = ndb.DateTimeProperty(auto_now_add=True)
+	author = ndb.UserProperty()
+	content = ndb.StringProperty(indexed=False)
+	date = ndb.DateTimeProperty(auto_now_add=True)
 	
 class Thesis(ndb.Model):
 	thesis_title = ndb.StringProperty(indexed=False)
@@ -50,9 +50,20 @@ class ThesisViewHandler(webapp2.RequestHandler):
 	def get(self, thesis_id):
 		thesis_all=Thesis.query().fetch()
 		thesis_id = int(thesis_id)
+		
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
 		template_values={
 			'id': thesis_id,
-			'thesis_all': thesis_all
+			'thesis_all': thesis_all,
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
 		}
 		template = JINJA_ENVIRONMENT.get_template('thesis_description.html')
 		self.response.write(template.render(template_values))
@@ -60,8 +71,17 @@ class ThesisViewHandler(webapp2.RequestHandler):
 class ThesisListHandler(webapp2.RequestHandler):
 	def get(self):
 		thesis_all=Thesis.query().fetch()
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
 		template_values={
-			'thesis_all': thesis_all
+			'thesis_all': thesis_all,
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
 		}
 
 		template = JINJA_ENVIRONMENT.get_template('thesis_list.html')
@@ -71,10 +91,19 @@ class ThesisEditHandler(webapp2.RequestHandler):
 	def get(self, thesis_id):
 		thesis_all=Thesis.query().fetch()
 		thesis_id = int(thesis_id)
-		thesis = Thesis.get_by_id(thesis_id)
+
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
 		template_values={
 			'id': thesis_id,
-			'thesis_all': thesis_all
+			'thesis_all': thesis_all,
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
 		}
 		template = JINJA_ENVIRONMENT.get_template('thesis_edit.html')
 		self.response.write(template.render(template_values))
@@ -91,8 +120,22 @@ class ThesisEditHandler(webapp2.RequestHandler):
 
 class ThesisNewHandler(webapp2.RequestHandler):
 	def get(self):
+
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
+		template_values = {
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
+		}
+
 		template = JINJA_ENVIRONMENT.get_template('thesis_new.html')
-		self.response.write(template.render())
+		self.response.write(template.render(template_values))
 
 	def post(self):
 		thesis = Thesis()
@@ -105,8 +148,22 @@ class ThesisNewHandler(webapp2.RequestHandler):
 
 class AdviserNewHandler(webapp2.RequestHandler):
 	def get(self):
+
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
+		template_values = {
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
+		}
+
 		template = JINJA_ENVIRONMENT.get_template('adviser_new.html')
-		self.response.write(template.render())
+		self.response.write(template.render(template_values))
 
 	def post(self):
 		adviser = Adviser()
@@ -123,9 +180,20 @@ class AdviserEditHandler(webapp2.RequestHandler):
 	def get(self, adviser_id):
 		adviser_all=Adviser.query().fetch()
 		adviser_id = int(adviser_id)
+
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
 		template_values={
 			'id': adviser_id,
-			'adviser_all': adviser_all
+			'adviser_all': adviser_all,
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
 		}
 		template = JINJA_ENVIRONMENT.get_template('adviser_edit.html')
 		self.response.write(template.render(template_values))
@@ -145,8 +213,19 @@ class AdviserEditHandler(webapp2.RequestHandler):
 class AdviserListHandler(webapp2.RequestHandler):
 	def get(self):
 		adviser_all=Adviser.query().fetch()
+
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
 		template_values={
-			'adviser_all': adviser_all
+			'adviser_all': adviser_all,
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
 		}
 
 		template = JINJA_ENVIRONMENT.get_template('adviser_list.html')
@@ -156,17 +235,41 @@ class AdviserViewHandler(webapp2.RequestHandler):
 	def get(self, adviser_id):
 		adviser_all=Adviser.query().fetch()
 		adviser_id = int(adviser_id)
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
 		template_values={
 			'id': adviser_id,
-			'adviser_all': adviser_all
+			'adviser_all': adviser_all,
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
 		}
 		template = JINJA_ENVIRONMENT.get_template('adviser_view.html')
 		self.response.write(template.render(template_values))
 
 class StudentNewHandler(webapp2.RequestHandler):
 	def get(self):
+
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
+		template_values = {
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
+		}
+
 		template = JINJA_ENVIRONMENT.get_template('student_new.html')
-		self.response.write(template.render())
+		self.response.write(template.render(template_values))
 
 	def post(self):
 		student = Student()
@@ -182,8 +285,19 @@ class StudentNewHandler(webapp2.RequestHandler):
 class StudentListHandler(webapp2.RequestHandler):
 	def get(self):
 		student_all=Student.query().fetch()
+
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
 		template_values={
-			'student_all': student_all
+			'student_all': student_all,
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
 		}
 
 		template = JINJA_ENVIRONMENT.get_template('student_list.html')
@@ -193,9 +307,20 @@ class StudentViewHandler(webapp2.RequestHandler):
 	def get(self, student_id):
 		student_all=Student.query().fetch()
 		student_id = int(student_id)
-		template_values={
+
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
+		template_values = {
 			'id': student_id,
-			'student_all': student_all
+			'student_all': student_all,
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
 		}
 		template = JINJA_ENVIRONMENT.get_template('student_view.html')
 		self.response.write(template.render(template_values))
@@ -204,9 +329,20 @@ class StudentEditHandler(webapp2.RequestHandler):
 	def get(self, student_id):
 		student_all=Student.query().fetch()
 		student_id = int(student_id)
+
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+
 		template_values={
 			'id': student_id,
-			'student_all': student_all
+			'student_all': student_all,
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
 		}
 		template = JINJA_ENVIRONMENT.get_template('student_edit.html')
 		self.response.write(template.render(template_values))
@@ -224,122 +360,123 @@ class StudentEditHandler(webapp2.RequestHandler):
 		self.redirect('/student/list')
 
 class HomePageHandler(webapp2.RequestHandler):
+	def get(self):
+		guestbook_name = self.request.get('guestbook_name',
+			DEFAULT_GUESTBOOK_NAME)
+		greetings_query = Greeting.query(
+			ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
+		greetings = greetings_query.fetch(5)
 
-    def get(self):
-        guestbook_name = self.request.get('guestbook_name',
-                                          DEFAULT_GUESTBOOK_NAME)
-        greetings_query = Greeting.query(
-            ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
-        greetings = greetings_query.fetch(5)
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
 
-        if users.get_current_user():
-            url = users.create_logout_url(self.request.uri)
-            url_linktext = 'Logout'
-        else:
-            url = users.create_login_url(self.request.uri)
-            url_linktext = 'Login'
+		template_values = {
+			'greetings': greetings,
+			'guestbook_name': urllib.quote_plus(guestbook_name),
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
+			}
 
-        template_values = {
-            'greetings': greetings,
-            'guestbook_name': urllib.quote_plus(guestbook_name),
-            'url': url,
-            'url_linktext': url_linktext,
-            'user_name': users.get_current_user()
-        }
+		template = JINJA_ENVIRONMENT.get_template('homepage.html')
+		self.response.write(template.render(template_values))
 
-        template = JINJA_ENVIRONMENT.get_template('homepage.html')
-        self.response.write(template.render(template_values))
-    def post(self):
-        guestbook_name = self.request.get('guestbook_name',
-                                          DEFAULT_GUESTBOOK_NAME)
-        greeting = Greeting(parent=guestbook_key(guestbook_name))
+	def post(self):
+		guestbook_name = self.request.get('guestbook_name',
+			DEFAULT_GUESTBOOK_NAME)
+		greeting = Greeting(parent=guestbook_key(guestbook_name))
 
-        if users.get_current_user():
-            greeting.author = users.get_current_user()
+		if users.get_current_user():
+			greeting.author = users.get_current_user()
 
-        greeting.content = self.request.get('content')
-        greeting.put()
+		greeting.content = self.request.get('content')
+		greeting.put()
 
-        query_params = {'guestbook_name': guestbook_name}
-        self.redirect('/')
+		query_params = {'guestbook_name': guestbook_name}
+		self.redirect('/')
 
 class MemberOnePage(webapp2.RequestHandler):
-    
-    def get(self):
-        guestbook_name = self.request.get('guestbook_name1',
-                                          DEFAULT_GUESTBOOK_NAME1)
-        greetings_query = Greeting.query(
-            ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
-        greetings = greetings_query.fetch(5)
+	def get(self):
+		guestbook_name = self.request.get('guestbook_name1',
+			DEFAULT_GUESTBOOK_NAME1)
+		greetings_query = Greeting.query(
+			ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
+		greetings = greetings_query.fetch(5)
 
-        if users.get_current_user():
-            url = users.create_logout_url(self.request.uri)
-            url_linktext = 'Logout'
-        else:
-            url = users.create_login_url(self.request.uri)
-            url_linktext = 'Login'
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
 
-        template_values = {
-            'greetings': greetings,
-            'guestbook_name': urllib.quote_plus(guestbook_name),
-            'url': url,
-            'url_linktext': url_linktext,
-        }
+		template_values = {
+			'greetings': greetings,
+			'guestbook_name': urllib.quote_plus(guestbook_name),
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
+			}
 
-        template = JINJA_ENVIRONMENT.get_template('personal-web-member-1.html')
-        self.response.write(template.render(template_values))
+		template = JINJA_ENVIRONMENT.get_template('personal-web-member-1.html')
+		self.response.write(template.render(template_values))
 
-    def post(self):
-        guestbook_name = self.request.get('guestbook_name1',
-                                          DEFAULT_GUESTBOOK_NAME1)
-        greeting = Greeting(parent=guestbook_key(guestbook_name))
+	def post(self):
+		guestbook_name = self.request.get('guestbook_name1',
+			DEFAULT_GUESTBOOK_NAME1)
+		greeting = Greeting(parent=guestbook_key(guestbook_name))
 
-        if users.get_current_user():
-            greeting.author = users.get_current_user()
+		if users.get_current_user():
+			greeting.author = users.get_current_user()
 
-        greeting.content = self.request.get('content')
-        greeting.put()
+			greeting.content = self.request.get('content')
+			greeting.put()
 
-        query_params = {'guestbook_name': guestbook_name}
-        self.redirect('/module-1/1')
+			query_params = {'guestbook_name': guestbook_name}
+			self.redirect('/module-1/1')
 
 class MemberTwoPage(webapp2.RequestHandler):
-    def get(self):
-        guestbook_name = self.request.get('guestbook_name',
-                                          DEFAULT_GUESTBOOK_NAME)
-        greetings_query = Greeting.query(
-            ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
-        greetings = greetings_query.fetch(5)
+	def get(self):
+		guestbook_name = self.request.get('guestbook_name',
+			DEFAULT_GUESTBOOK_NAME)
+		greetings_query = Greeting.query(
+			ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
+		greetings = greetings_query.fetch(5)
 
-        if users.get_current_user():
-            url = users.create_logout_url(self.request.uri)
-            url_linktext = 'Logout'
-        else:
-            url = users.create_login_url(self.request.uri)
-            url_linktext = 'Login'
+		if users.get_current_user():
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
 
-        template_values = {
-            'greetings': greetings,
-            'guestbook_name': urllib.quote_plus(guestbook_name),
-            'url': url,
-            'url_linktext': url_linktext,
-        }
+		template_values = {
+			'greetings': greetings,
+			'guestbook_name': urllib.quote_plus(guestbook_name),
+			'url': url,
+			'url_linktext': url_linktext,
+			'user_name': users.get_current_user()
+		}
 
-        template = JINJA_ENVIRONMENT.get_template('personal-web-member-2.html')
-        self.response.write(template.render(template_values))
-    def post(self):
-        guestbook_name = self.request.get('guestbook_name',
-                                          DEFAULT_GUESTBOOK_NAME)
-        greeting = Greeting(parent=guestbook_key(guestbook_name))
+		template = JINJA_ENVIRONMENT.get_template('personal-web-member-2.html')
+		self.response.write(template.render(template_values))
+	def post(self):
+		guestbook_name = self.request.get('guestbook_name',
+			DEFAULT_GUESTBOOK_NAME)
+		greeting = Greeting(parent=guestbook_key(guestbook_name))
 
-        if users.get_current_user():
-            greeting.author = users.get_current_user()
+		if users.get_current_user():
+			greeting.author = users.get_current_user()
 
-        greeting.content = self.request.get('content')
-        greeting.put()
+		greeting.content = self.request.get('content')
+		greeting.put()
 
-        query_params = {'guestbook_name': guestbook_name}
-        self.redirect('/module-1/2?')
+		query_params = {'guestbook_name': guestbook_name}
+		self.redirect('/module-1/2?')
 
 application = webapp2.WSGIApplication([
     ('/thesis/new', ThesisNewHandler),

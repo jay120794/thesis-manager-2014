@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/css/bootstrap.css">
 </head>
 <body>
+	{% if user_name %}
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
@@ -76,6 +77,7 @@
 							</ul>
 						</li>
 					</ul>
+					<a href="{{ url|safe }}" class="navbar-link navbar-right navbar-text" style="color: #5586E6; margin-right: 130px;">{{ url_linktext }}</a>
 				</div>
 			</div>
 		</div>
@@ -131,6 +133,11 @@
 			{% endif %}
 			{% endfor %}
 		</div>
+		{% else %}
+		<div id="Login">
+			<h3> Please <a href="{{ url|safe }}">{{ url_linktext }}</a> to edit adviser :) </h3>
+		</div>
+		{% endif %}
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="/stylesheets/js/bootstrap.min.js"></script>
         <script type="text/javascript">

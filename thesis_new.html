@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/css/bootstrap.css">
 </head>
 	<body>
+		{% if user_name %}
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
@@ -76,6 +77,7 @@
 							</ul>
 						</li>
 					</ul>
+					<a href="{{ url|safe }}" class="navbar-link navbar-right navbar-text" style="color: #5586E6; margin-right: 130px;">{{ url_linktext }}</a>
 				</div>
 			</div>
 		</div>
@@ -128,6 +130,11 @@
 				</div>
 			</form>
 		</div>
+		{% else %}
+		<div id="Login">
+			<h3> Please <a href="{{ url|safe }}">{{ url_linktext }}</a> to add new thesis :) </h3>
+		</div>
+		{% endif %}
 	<script type="text/javascript">
 		function validateForm() {
 	    	var w = document.forms["thesis_form"]["thesis_title"].value;

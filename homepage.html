@@ -5,8 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 </head>
-	<body>
-		{% if user_name %}
+<body>
+	{% if user_name %}
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
@@ -75,22 +75,22 @@
 							</ul>
 						</li>
 					</ul>
-					<a href="{{ url|safe }}" class="navbar-link navbar-right navbar-text">{{ url_linktext }}</a>
+					<a href="{{ url|safe }}" class="navbar-link navbar-right navbar-text" style="color: #5586E6; margin-right: 130px;">{{ url_linktext }}</a>
 				</div>
 			</div>
 		</div>
 		
-		<div class="jumbotron" style="padding-left:30px; height:170px; margin-top:50px; width: 350px; margin-left: 280px;">
-		<p style="font-size:40px;">Welcome to our Thesis Manager! :)</p>
+	<div class="jumbotron" style="padding-left:30px; height:170px; margin-top:50px; width: 350px; margin-left: 280px;">
+		<p style="font-size:40px; font-family: garamond;">Welcome to our Thesis Manager! :)</p>
 		
-		<div style="background-color: rgba(37,33,32,0.4); color: #e5dfc5; overflow:auto; height: 350px; width:600px; margin-top:75px; margin-left: -150px; border: solid 1px #b48375; border-radius:7px;">
+		<div style="background-color: rgba(115,210,161,0.1); color: #e5dfc5; overflow:auto; height: 350px; width:600px; margin-top:75px; margin-left: -150px; border: solid 1px #b48375; padding-top: 20px; padding-left: 50px;">
 		{% for greeting in greetings %}
       		{% if greeting.author %}
-        		<p style="font-family: arial; padding-top: 15px; padding-left: 15px;"><strong>{{ greeting.author.nickname() }} </strong> wrote: </p>
+        		<p style="font-family: arial; padding-top: 10px; padding-left: 10px;"><strong>{{ greeting.author.nickname() }} </strong> wrote: </p>
       			{% else %}
-       			<p style="font-family: arial; padding-left: 15px;"> An unknown person wrote: </p>
+       			<p style="font-family: arial; padding-left: 10px;"> An unknown person wrote: </p>
       			{% endif %}	
-      		<blockquote style="border-left: 2px solid #a92f41; margin-left: 15px;">{{ greeting.content }}</blockquote>
+      		<blockquote style="border-left: 2px solid #a92f41; margin-left: 35px;">{{ greeting.content }}</blockquote>
     	{% endfor %}
     	</div>
     	<form action="/sign?guestbook_name={{ guestbook_name }}" method="post">
@@ -100,16 +100,16 @@
     		<br>
     		<br>
     		<form style="color:#e5dfc5; margin-left: 15px; height: 100px;">Guestbook name:
-      			<input value="{{ guestbook_name }}" name="guestbook_name">
+      			<input value="{{ guestbook_name }}" name="guestbook_name" style="color:black;">
       			<input class="button" type="submit" value="switch" style="color: #e5dfc5; margin-left:100px; margin-top:-40px;">
-    		</form>
-		</div>
+			</form>
+	</div>
 		{% else %}
-		<div>
-			<h3> Please <a href="{{ url|safe }}">{{ url_linktext }}</a> to view this page :) hehehe. </h3>
+		<div id="Login">
+			<h3 style="margin-left:600px;"> Please <a href="{{ url|safe }}">{{ url_linktext }}</a> to view HomePage :)</h3>
 		</div>
 		{% endif %}
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="/stylesheets/js/bootstrap.min.js"></script>
-	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/stylesheets/js/bootstrap.min.js"></script>
+</body>
 </html>
